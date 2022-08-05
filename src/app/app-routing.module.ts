@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from '@modules/main/main.component';
 import {BlankComponent} from '@pages/blank/blank.component';
 import {LoginComponent} from '@modules/login/login.component';
@@ -11,8 +11,8 @@ import {NonAuthGuard} from '@guards/non-auth.guard';
 import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
 import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
 import {PrivacyPolicyComponent} from '@modules/privacy-policy/privacy-policy.component';
-import {MainMenuComponent} from '@pages/main-menu/main-menu.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
+import {ForbiddenComponent} from "@modules/forbidden/forbidden.component";
 
 const routes: Routes = [
     {
@@ -58,17 +58,18 @@ const routes: Routes = [
         component: ForgotPasswordComponent,
         canActivate: [NonAuthGuard]
     },
-    {
-        path: 'recover-password',
-        component: RecoverPasswordComponent,
-        canActivate: [NonAuthGuard]
-    },
-    {
-        path: 'privacy-policy',
-        component: PrivacyPolicyComponent,
-        canActivate: [NonAuthGuard]
-    },
-    {path: '**', redirectTo: ''}
+  {
+    path: 'recover-password',
+    component: RecoverPasswordComponent,
+    canActivate: [NonAuthGuard]
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
+    canActivate: [NonAuthGuard]
+  },
+  {path: '403', component: ForbiddenComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

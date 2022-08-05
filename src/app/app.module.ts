@@ -36,18 +36,19 @@ import {ControlSidebarComponent} from './modules/main/control-sidebar/control-si
 import {StoreModule} from '@ngrx/store';
 import {authReducer} from './store/auth/reducer';
 import {uiReducer} from './store/ui/reducer';
-import { SelectComponent } from './components/select/select.component';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import {SelectComponent} from './components/select/select.component';
+import {CheckboxComponent} from './components/checkbox/checkbox.component';
+import {ForbiddenComponent} from './modules/forbidden/forbidden.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        MainComponent,
-        LoginComponent,
-        HeaderComponent,
-        FooterComponent,
+  declarations: [
+    AppComponent,
+    MainComponent,
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
         MenuSidebarComponent,
         BlankComponent,
         ProfileComponent,
@@ -58,18 +59,19 @@ registerLocaleData(localeEn, 'en-EN');
         ButtonComponent,
         UserComponent,
         ForgotPasswordComponent,
-        RecoverPasswordComponent,
-        LanguageComponent,
-        PrivacyPolicyComponent,
-        MainMenuComponent,
-        SubMenuComponent,
-        MenuItemComponent,
-        DropdownComponent,
-        DropdownMenuComponent,
-        ControlSidebarComponent,
-        SelectComponent,
-        CheckboxComponent
-    ],
+    RecoverPasswordComponent,
+    LanguageComponent,
+    PrivacyPolicyComponent,
+    MainMenuComponent,
+    SubMenuComponent,
+    MenuItemComponent,
+    DropdownComponent,
+    DropdownMenuComponent,
+    ControlSidebarComponent,
+    SelectComponent,
+    CheckboxComponent,
+    ForbiddenComponent
+  ],
     imports: [
         BrowserModule,
         StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
