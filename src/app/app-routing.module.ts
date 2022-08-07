@@ -13,32 +13,47 @@ import {RecoverPasswordComponent} from '@modules/recover-password/recover-passwo
 import {PrivacyPolicyComponent} from '@modules/privacy-policy/privacy-policy.component';
 import {SubMenuComponent} from '@pages/main-menu/sub-menu/sub-menu.component';
 import {ForbiddenComponent} from "@modules/forbidden/forbidden.component";
+import {ProductsComponent} from "@pages/products/products.component";
+import {AddProductComponent} from "@pages/products/add-product/add-product.component";
+import {UpdateProductComponent} from "@pages/products/update-product/update-product.component";
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    component: MainComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'blank',
+        component: BlankComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      },
+      {
+        path: 'products/create',
+        component: AddProductComponent
+      },
+      {
+        path: 'products/:id/edit',
+        component: UpdateProductComponent
+      },
+      {
+        path: 'sub-menu-1',
+        component: SubMenuComponent
+      },
+      {
+        path: 'sub-menu-2',
+        component: BlankComponent
+      },
+      {
         path: '',
-        component: MainComponent,
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
-        children: [
-            {
-                path: 'profile',
-                component: ProfileComponent
-            },
-            {
-                path: 'blank',
-                component: BlankComponent
-            },
-            {
-                path: 'sub-menu-1',
-                component: SubMenuComponent
-            },
-            {
-                path: 'sub-menu-2',
-                component: BlankComponent
-            },
-            {
-                path: '',
                 component: DashboardComponent
             }
         ]

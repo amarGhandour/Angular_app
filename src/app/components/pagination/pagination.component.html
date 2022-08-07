@@ -1,0 +1,11 @@
+<div class=" clearfix">
+  <ul class="pagination pagination-lg float-left">
+
+    <ng-container *ngFor="let page of links; let i = index;">
+      <li *ngIf="i === 0" class="page-item"><a class="page-link">&laquo;</a></li>
+      <li *ngIf="i !== 0 && i !== links.length - 1" class="page-item"><a class="page-link">{{i}}</a></li>
+      <li *ngIf="i === links.length - 1" class="page-item"><a class="page-link">&raquo;</a></li>
+    </ng-container>
+
+  </ul>
+</div>

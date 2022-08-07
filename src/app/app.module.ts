@@ -10,7 +10,7 @@ import {HeaderComponent} from '@modules/main/header/header.component';
 import {FooterComponent} from '@modules/main/footer/footer.component';
 import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
 import {BlankComponent} from '@pages/blank/blank.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegisterComponent} from '@modules/register/register.component';
@@ -39,6 +39,13 @@ import {uiReducer} from './store/ui/reducer';
 import {SelectComponent} from './components/select/select.component';
 import {CheckboxComponent} from './components/checkbox/checkbox.component';
 import {ForbiddenComponent} from './modules/forbidden/forbidden.component';
+import {ProductsComponent} from './pages/products/products.component';
+import {PaginationComponent} from './components/pagination/pagination.component';
+import {MatSliderModule} from "@angular/material/slider";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {AddProductComponent} from './pages/products/add-product/add-product.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {UpdateProductComponent} from './pages/products/update-product/update-product.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -70,22 +77,30 @@ registerLocaleData(localeEn, 'en-EN');
     ControlSidebarComponent,
     SelectComponent,
     CheckboxComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ProductsComponent,
+    PaginationComponent,
+    AddProductComponent,
+    UpdateProductComponent
   ],
-    imports: [
-        BrowserModule,
-        StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
-        HttpClientModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        ToastrModule.forRoot({
-            timeOut: 3000,
-            positionClass: 'toast-top-right',
-            preventDuplicates: true
-        }),
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
+    MatPaginatorModule,
+    FormsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

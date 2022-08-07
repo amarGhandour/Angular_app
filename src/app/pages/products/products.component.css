@@ -1,0 +1,10 @@
+mat-paginator {
+  position: relative;
+  top: -0.8rem;
+}
+
+td {
+  vertical-align: middle;
+  font-size: 17px;
+  color: #706666;
+}
