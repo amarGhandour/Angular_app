@@ -1,0 +1,96 @@
+<!-- Content Wrapper. Contains page content -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Create Slider</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">Create Slider</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <form (ngSubmit)="createSliderSubmit()" [formGroup]="createSliderForm">
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-body">
+
+            <div class="form-group">
+              <label for="sliderTitle">Slider Title</label>
+              <input class="form-control" formControlName="title" id="sliderTitle" name="name" type="text">
+              <div *ngIf="title?.invalid && title?.touched" class="text text-danger my-1">
+                <div *ngIf="title?.errors?.required">title field is required</div>
+              </div>
+              <div class="text text-danger my-1">
+                <div *ngIf="errors?.title && title?.pristine">{{errors?.title}}</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sliderDescription">Slider Description</label>
+              <textarea class="form-control" formControlName="description" id="sliderDescription" name="description"
+                        rows="4"></textarea>
+              <div *ngIf="description?.invalid && description?.touched" class="text text-danger my-1">
+                <div *ngIf="description?.errors?.required">name field is required</div>
+              </div>
+              <div class="text text-danger my-1">
+                <div *ngIf="errors?.description && description?.pristine">{{errors?.description}}</div>
+              </div>
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+              <label for="sliderStatus">Publish</label>
+              <select class="custom-select" formControlName="status" id="sliderStatus" name="status">
+                <option disabled value="">Select a choice</option>
+                <option [ngValue]="false" selected>NO</option>
+                <option [ngValue]="true">YES</option>
+              </select>
+              <div class="text text-danger my-1">
+                <div *ngIf="errors?.status && status?.pristine">{{errors?.status}}</div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <div class="col-md-6">
+        <div class="card" style="min-height: 15rem">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="customFile">Slider Image</label>
+              <div class="custom-file">
+                <input (change)="onChooseImage($event)" class="custom-file-input" formControlName="image"
+                       id="customFile" name="image" type="file">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+            </div>
+            <div *ngIf="sliderImageSrc !== null" class="d-flex">
+              <img [src]="sliderImageSrc" alt="Slider image" style="max-width:10rem; max-height: 10rem">
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+    </div>
+    <div class="row ">
+      <div class="col-12 d-flex justify-content-center">
+        <a class="btn btn-secondary mx-3" routerLink="/products">Back</a>
+        <input [disabled]="createSliderForm.invalid" class="btn btn-success" type="submit" value="Create">
+      </div>
+    </div>
+  </form>
+</section>
+<!-- /.content -->
+
+<!-- /.content-wrapper -->

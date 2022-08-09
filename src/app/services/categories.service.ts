@@ -19,6 +19,6 @@ export class CategoriesService {
 
 
   getAllCategories() {
-    return this.httpClient.get(`${environment.api}/categories`, this.httpOptions)
+    return this.httpClient.get(`${environment.api}/categories?all=1`, this.httpOptions)
   }
 }

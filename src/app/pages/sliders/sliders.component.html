@@ -1,0 +1,80 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Sliders</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Sliders</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <!-- Default box -->
+  <div class="container-fluid">
+    <div class="row justify-content-end mb-3 mr-2">
+      <a class="btn btn-primary" routerLink="/sliders/create">
+        Add New Slider
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let slider of sliders;let i = index" class="">
+                <td class="text-left">
+                  <div style="width: 4rem; height: 4rem">
+                    <img [src]="slider.image" alt="This is a slider image." class="product-image-thumb"
+                         style="height:100%; width:100%;">
+                  </div>
+                </td>
+
+                <td>{{slider?.title}}</td>
+                <td>{{slider?.status ? "Published" : "Not Published"}}</td>
+                <td>
+                  <a class="mx-2" style="cursor: pointer">
+                    <i (click)="deleteSlider(slider.id)" class="fas fa-trash-alt"></i>
+                  </a>
+                  <a class="mx-2" routerLink="/sliders/{{slider.id}}/edit">
+                    <i class="fas fa-edit" style="cursor: pointer"></i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+          <!-- /.card -->
+        </div>
+      </div>
+    </div>
+    <mat-paginator #paginator (page)="getSliders($event)" [length]="length"
+                   [ngClass]="{'d-none': sliders?.length === 0}"
+                   [pageIndex]="pageIndex"
+                   [pageSize]="pageSize"
+                   class="bg-transparent"
+                   hidePageSize
+    >
+    </mat-paginator>
+  </div>
+</section>
+
+<!-- /.content -->

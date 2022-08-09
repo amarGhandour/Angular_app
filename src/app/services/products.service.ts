@@ -40,6 +40,5 @@ export class ProductsService {
 
   updateProduct(formData: FormData, id: any) {
     return this.httpClient.post(`${environment.api}/admin/products/${id}`, formData, this.httpOptions);
-
   }
 }

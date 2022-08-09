@@ -45,6 +45,11 @@ export const MENU = [
     path: ['/products']
   },
   {
+    name: 'Sliders',
+    iconClasses: 'fas fa-sliders-h',
+    path: ['/sliders']
+  },
+  {
     name: 'Blank',
     iconClasses: 'fas fa-file',
     path: ['/blank']

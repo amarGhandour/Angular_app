@@ -46,6 +46,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {AddProductComponent} from './pages/products/add-product/add-product.component';
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import {UpdateProductComponent} from './pages/products/update-product/update-product.component';
+import {SlidersComponent} from './pages/sliders/sliders.component';
+import {CreateSliderComponent} from './pages/sliders/create-slider/create-slider.component';
+import {EditSliderComponent} from './pages/sliders/edit-slider/edit-slider.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -81,7 +84,10 @@ registerLocaleData(localeEn, 'en-EN');
     ProductsComponent,
     PaginationComponent,
     AddProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    SlidersComponent,
+    CreateSliderComponent,
+    EditSliderComponent
   ],
   imports: [
     BrowserModule,

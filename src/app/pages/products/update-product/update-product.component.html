@@ -50,10 +50,10 @@
                 (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)"
                 [(ngModel)]="selectedItems"
-                [data]="dropdownList"
                 [ngModelOptions]="{standalone: true}"
-                [placeholder]="'Select categories'"
                 [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [placeholder]="'Select categories'"
                 required
               >
               </ng-multiselect-dropdown>

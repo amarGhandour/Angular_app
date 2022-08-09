@@ -25,7 +25,6 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
   }
 
-
   getProducts($event?: PageEvent) {
     this.pageEvent = $event;
     const observer = {

@@ -16,6 +16,9 @@ import {ForbiddenComponent} from "@modules/forbidden/forbidden.component";
 import {ProductsComponent} from "@pages/products/products.component";
 import {AddProductComponent} from "@pages/products/add-product/add-product.component";
 import {UpdateProductComponent} from "@pages/products/update-product/update-product.component";
+import {SlidersComponent} from "@pages/sliders/sliders.component";
+import {CreateSliderComponent} from "@pages/sliders/create-slider/create-slider.component";
+import {EditSliderComponent} from "@pages/sliders/edit-slider/edit-slider.component";
 
 const routes: Routes = [
   {
@@ -45,6 +48,18 @@ const routes: Routes = [
         component: UpdateProductComponent
       },
       {
+        path: 'sliders',
+        component: SlidersComponent
+      },
+      {
+        path: 'sliders/create',
+        component: CreateSliderComponent
+      },
+      {
+        path: 'sliders/:id/edit',
+        component: EditSliderComponent
+      },
+      {
         path: 'sub-menu-1',
         component: SubMenuComponent
       },
@@ -54,7 +69,7 @@ const routes: Routes = [
       },
       {
         path: '',
-                component: DashboardComponent
+        component: DashboardComponent
             }
         ]
     },
