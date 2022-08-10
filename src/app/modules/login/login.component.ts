@@ -2,7 +2,6 @@ import {Component, HostBinding, OnDestroy, OnInit, Renderer2} from '@angular/cor
 import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AppService} from '@services/app.service';
-import {AuthService} from "@services/auth.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,27 +13,33 @@ export class LoginComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'login-box';
   public loginForm: UntypedFormGroup;
   public isAuthLoading = false;
-    public isGoogleLoading = false;
-    public isFacebookLoading = false;
+  errors: any = {};
 
     constructor(
       private renderer: Renderer2,
       private toastr: ToastrService,
       private appService: AppService,
-      private authService: AuthService,
       private router: Router
     ) {}
 
     ngOnInit() {
-        this.renderer.addClass(
-            document.querySelector('app-root'),
-            'login-page'
-        );
-        this.loginForm = new UntypedFormGroup({
-            email: new UntypedFormControl(null, Validators.required),
-            password: new UntypedFormControl(null, Validators.required)
-        });
+      this.renderer.addClass(
+        document.querySelector('app-root'),
+        'login-page'
+      );
+      this.loginForm = new UntypedFormGroup({
+        email: new UntypedFormControl(null, Validators.required),
+        password: new UntypedFormControl(null, Validators.required)
+      });
     }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   loginByAuth() {
     if (this.loginForm.valid) {
@@ -50,28 +55,25 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         },
         error: (err) => {
-          console.log('err')
+          if (err.status == 401)
+            this.toastr.error('Invalid email or password.');
+          else if (err.status == 422) {
+            for (let controlsKey in this.loginForm.controls) {
+              this.loginForm.controls[controlsKey].markAsPristine();
+              this.errors = err.error.errors;
+            }
+          }
+
         }
       };
 
-      this.authService.login(this.loginForm.value).subscribe(observer);
+      this.appService.loginByAuth(this.loginForm.value).subscribe(observer);
       this.isAuthLoading = false;
     } else {
             this.toastr.error('Form is not valid!');
         }
     }
 
-    async loginByGoogle() {
-        this.isGoogleLoading = true;
-        await this.appService.loginByGoogle();
-        this.isGoogleLoading = false;
-    }
-
-    async loginByFacebook() {
-        this.isFacebookLoading = true;
-        await this.appService.loginByFacebook();
-        this.isFacebookLoading = false;
-    }
 
     ngOnDestroy() {
         this.renderer.removeClass(

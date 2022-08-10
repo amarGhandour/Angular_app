@@ -13,7 +13,6 @@ import {BlankComponent} from '@pages/blank/blank.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from '@pages/profile/profile.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RegisterComponent} from '@modules/register/register.component';
 import {DashboardComponent} from '@pages/dashboard/dashboard.component';
 import {ToastrModule} from 'ngx-toastr';
 import {MessagesComponent} from '@modules/main/header/messages/messages.component';
@@ -49,6 +48,7 @@ import {UpdateProductComponent} from './pages/products/update-product/update-pro
 import {SlidersComponent} from './pages/sliders/sliders.component';
 import {CreateSliderComponent} from './pages/sliders/create-slider/create-slider.component';
 import {EditSliderComponent} from './pages/sliders/edit-slider/edit-slider.component';
+import {httpInterceptorsProviders} from "@/interceptors";
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -62,7 +62,6 @@ registerLocaleData(localeEn, 'en-EN');
         MenuSidebarComponent,
         BlankComponent,
         ProfileComponent,
-        RegisterComponent,
         DashboardComponent,
         MessagesComponent,
         NotificationsComponent,
@@ -106,7 +105,7 @@ registerLocaleData(localeEn, 'en-EN');
     MatPaginatorModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [httpInterceptorsProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

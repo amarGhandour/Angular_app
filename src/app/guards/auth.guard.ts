@@ -9,7 +9,6 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AppService} from '@services/app.service';
-import {AuthService} from "@services/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   private isAdmin = false;
 
-  constructor(private router: Router, private appService: AppService, private authService: AuthService) {
+  constructor(private router: Router, private appService: AppService) {
   }
 
   canActivate(

@@ -99,7 +99,6 @@ export class EditSliderComponent implements OnInit {
 
     const observer = {
       next: (result) => {
-        console.log(result);
         this.slider = result.data;
         this.fillFormFields();
       },
