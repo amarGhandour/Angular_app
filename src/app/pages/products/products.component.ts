@@ -3,6 +3,9 @@ import {IProduct} from "@/interfaces/iproduct";
 import {ProductsService} from "@services/products.service";
 import {PageEvent} from "@angular/material/paginator";
 import {ToastrService} from "ngx-toastr";
+import {ICategory} from "@/interfaces/icategory";
+import {CategoriesService} from "@services/categories.service";
+import {IDropdownSettings} from "ng-multiselect-dropdown";
 
 @Component({
   selector: 'app-products',
@@ -11,17 +14,22 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ProductsComponent implements OnInit {
 
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings: IDropdownSettings = {} as IDropdownSettings;
+
   products: IProduct[]
+  categories: ICategory[]
   length: any;
   pageIndex: any;
   pageSize: any;
   pageEvent?: PageEvent;
 
-  constructor(private productsService: ProductsService, private toaster: ToastrService) {
+  constructor(private productsService: ProductsService, private categoriesService: CategoriesService, private toaster: ToastrService) {
   }
 
   ngOnInit(): void {
-
+    this.getAllCategories();
     this.getProducts();
   }
 
@@ -62,4 +70,42 @@ export class ProductsComponent implements OnInit {
     this.productsService.deleteProduct(id).subscribe(observer);
   }
 
+  getAllCategories() {
+    const observer = {
+      next: (result) => {
+        this.categories = result.data;
+        this.makeSelectItems();
+      },
+      error: (error) => {
+        console.log('error occured');
+      }
+    }
+    this.categoriesService.getAllCategories().subscribe(observer);
+  }
+
+  onItemDeselect($event: any) {
+    this.productsService.httpOptions.params = this.productsService.params.delete('category', $event?.item_text);
+    this.getProducts();
+  }
+
+  onItemSelect($event: any) {
+    this.productsService.httpOptions.params = this.productsService.httpOptions.params.append('category', $event?.item_text);
+    this.getProducts();
+  }
+
+  private makeSelectItems() {
+    this.categories.forEach((category) => {
+      this.dropdownList.push({item_id: category.id, item_text: category.name});
+    });
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: this.categories.length,
+      allowSearchFilter: true
+    };
+  }
 }

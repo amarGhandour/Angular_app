@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {isUndefined} from "webpack-merge/dist/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +9,28 @@ import {environment} from "../../environments/environment";
 export class ProductsService {
 
   httpOptions;
+  params: HttpParams;
 
   constructor(private httpClient: HttpClient) {
+    this.params = new HttpParams();
     this.httpOptions = {
       headers: new HttpHeaders({
         "Accept": "application/json"
       }),
+      params: this.params,
       withCredentials: true
     };
   }
 
-  getAllProductsPaginated(page) {
+  getAllProductsPaginated(page?: any) {
     let url = `${environment.api}/products`;
-    if (page > 0) {
-      url += `?page=${page + 1}`
+
+    if (!isUndefined(page)) {
+      this.httpOptions.params = this.httpOptions.params.set('page', page + 1);
     }
+
+    console.log(this.httpOptions.params.toString());
+
     return this.httpClient.get(url, this.httpOptions)
   }
 
