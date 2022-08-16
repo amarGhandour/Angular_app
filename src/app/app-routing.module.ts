@@ -18,6 +18,9 @@ import {UpdateProductComponent} from "@pages/products/update-product/update-prod
 import {SlidersComponent} from "@pages/sliders/sliders.component";
 import {CreateSliderComponent} from "@pages/sliders/create-slider/create-slider.component";
 import {EditSliderComponent} from "@pages/sliders/edit-slider/edit-slider.component";
+import {CategoriesComponent} from "@pages/categories/categories.component";
+import {CreateCategoryComponent} from "@pages/categories/create-category/create-category.component";
+import {EditCategoryComponent} from "@pages/categories/edit-category/edit-category.component";
 
 const routes: Routes = [
   {
@@ -45,6 +48,18 @@ const routes: Routes = [
       {
         path: 'products/:id/edit',
         component: UpdateProductComponent
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent
+      },
+      {
+        path: 'categories/create',
+        component: CreateCategoryComponent
+      },
+      {
+        path: 'categories/:id/edit',
+        component: EditCategoryComponent
       },
       {
         path: 'sliders',

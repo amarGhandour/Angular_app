@@ -49,6 +49,9 @@ import {SlidersComponent} from './pages/sliders/sliders.component';
 import {CreateSliderComponent} from './pages/sliders/create-slider/create-slider.component';
 import {EditSliderComponent} from './pages/sliders/edit-slider/edit-slider.component';
 import {httpInterceptorsProviders} from "@/interceptors";
+import {CategoriesComponent} from './pages/categories/categories.component';
+import {CreateCategoryComponent} from './pages/categories/create-category/create-category.component';
+import {EditCategoryComponent} from './pages/categories/edit-category/edit-category.component';
 
 registerLocaleData(localeEn, 'en-EN');
 
@@ -86,7 +89,10 @@ registerLocaleData(localeEn, 'en-EN');
     UpdateProductComponent,
     SlidersComponent,
     CreateSliderComponent,
-    EditSliderComponent
+    EditSliderComponent,
+    CategoriesComponent,
+    CreateCategoryComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
